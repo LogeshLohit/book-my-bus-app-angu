@@ -1,0 +1,26 @@
+<p>tictoc works!</p>
+<button [class.bg-info]="tiles['0:0']==='X'" [class.bg-warning]="tiles['0:0']==='O'" class="btn btn-primary"
+    [disabled]="tiles['0:0']" (click)="fillTile('0:0')">{{tiles['0:0']}}</button>
+<button [class.bg-info]="tiles['0:1']==='X'" [class.bg-warning]="tiles['0:1']==='O'" class="btn btn-primary"
+    (click)="fillTile('0:1')">{{tiles['0:1']}}</button>
+<button [class.bg-info]="tiles['0:2']==='X'" [class.bg-warning]="tiles['0:2']==='O'" class="btn btn-primary"
+    (click)="fillTile('0:2')">{{tiles['0:2']}}</button>
+<br>
+<button [class.bg-info]="tiles['1:0']==='X'" [class.bg-warning]="tiles['1:0']==='O'" class="btn btn-primary"
+    (click)="fillTile('1:0')">{{tiles['1:0']}}</button>
+<button [class.bg-info]="tiles['1:1']==='X'" [class.bg-warning]="tiles['1:1']==='O'" class="btn btn-primary"
+    (click)="fillTile('1:1')">{{tiles['1:1']}}</button>
+<button [class.bg-info]="tiles['1:2']==='X'" [class.bg-warning]="tiles['1:2']==='O'" class="btn btn-primary"
+    (click)="fillTile('1:2')">{{tiles['1:2']}}</button>
+<br>
+<button [class.bg-info]="tiles['2:0']==='X'" [class.bg-warning]="tiles['2:0']==='O'" class="btn btn-primary"
+    (click)="fillTile('2:0')">{{tiles['2:0']}}</button>
+<button [class.bg-info]="tiles['2:1']==='X'" [class.bg-warning]="tiles['2:1']==='O'" class="btn btn-primary"
+    (click)="fillTile('2:1')">{{tiles['2:1']}}</button>
+<button [class.bg-info]="tiles['2:2']==='X'" [class.bg-warning]="tiles['2:2']==='O'" class="btn btn-primary"
+    (click)="fillTile('2:2')">{{tiles['2:2']}}</button>
+
+<!-- <div id="mydiv">hello</div><br>
+<div id="mydiv" (click)="call()">world</div> -->
+
+{{result}}

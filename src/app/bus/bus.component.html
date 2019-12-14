@@ -1,0 +1,78 @@
+<div *ngIf="toggleSmartSearch" align="center">
+  <input type="text" [(ngModel)]="busSearchNo" placeholder="Bus No" />
+  <input type="text" [(ngModel)]="busSearchfromCity" placeholder="From city" />
+  <input type="text" [(ngModel)]="busSearchToCity" placeholder="To city" />
+</div>
+<div class="row">
+  <div class="col-3 bg-dark text-white">
+    <div class="row">
+      <div class="col text-center">
+        <button class="btn btn-md btn-bg-outline-primary" (click)="showSmartSearch()">Show Smart Search</button>
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <div class="col text-center">
+          <strong>Select From City:</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <select class="dropdown" [(ngModel)]="selectedFromCity" (click)="getSelectedFromCity(selectedFromCity)">
+            <option value="" selected="selected">--Select from city--</option>
+            <option *ngFor="let city of fromCities" value={{city}}>{{city | uppercase}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <div class="col text-center">
+          <strong>Select To City:</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <select class="from-control clearfix" [(ngModel)]="selectedToCity"
+            (click)="getSelectedToCity(selectedToCity)">
+            <option value="" selected="selected">--Select to city--</option>
+            <option *ngFor="let toCity of toCities">{{toCity | uppercase}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-9">
+    <div *ngIf="!buses.length" class="text-center">
+      <h1>Sorry, No buses found :(</h1>
+    </div>
+    <div *ngFor="let bus of buses | busSearchFilter : busSearchNo: busSearchfromCity: busSearchToCity"
+      class="card m-4 p-3 bg-light">
+      <div *ngIf="!buses.length">
+        <h1>Sorry, No buses found :(</h1>
+      </div>
+      <div *ngIf="buses">
+        <h4>
+          <div class="row clearfix">
+            <div class="col-12 p-1 m-1 badge badge-pill badge-primary d-block d-xs-none d-sm-none">{{bus.busRouteNo}}
+            </div>
+
+            <div class="col-1 p-1 m-1 badge badge-pill badge-primary d-none d-md-block d-xl-block">{{bus.busRouteNo}}
+            </div>
+
+            <div class="col p-1 m-1">
+              {{bus.fromCity | uppercase}} to {{bus.toCity | uppercase}}
+            </div>
+            <div class="badge">Rs.{{bus.busFare}}</div>
+          </div>
+          <div class="row visible-lg">
+            <button class="col col-offset-2 btn btn-outline-success" (click)="handleBook(bus._id)">BOOK</button>
+          </div>
+        </h4>
+      </div>
+      <div class="d-flex justify-content-center">{{bus.busDescription}}</div>
+      <!-- <div class="d-lg-none">hide on screens wider than lg</div>
+          <div class="d-none d-lg-block">hide on screens smaller than lg</div> -->
+    </div>
+  </div>
+</div>

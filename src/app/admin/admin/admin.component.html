@@ -1,0 +1,51 @@
+<style>
+  input.ng-dirty.ng-invalid {
+    border: 2px solid #ff0000
+  }
+
+  input.ng-dirty.ng-valid {
+    border: 2px solid #6bc502
+  }
+</style>
+<h2 class="text-center">ADMIN LOGIN</h2>
+<h4 class="bg-danger" *ngIf="loginError != null">Login Failed.Try again.</h4>
+
+<div class="m-2">
+  <form #form="ngForm" novalidate (ngSubmit)="handleAdminLogin(admin)">
+    <div class="form-group">
+      <label>Admin ID</label>
+      <input class="form-control" name="adminId" [(ngModel)]="admin.adminId" #adminId="ngModel" required minlength="3"
+        pattern="^[A-Za-z0-9 ]+$" />
+      <ul class="text-danger list-unstyled" *ngIf="adminId.dirty && adminId.invalid">
+        <li *ngIf="adminId.errors.required">
+          You must enter a id
+        </li>
+        <li *ngIf="adminId.errors.pattern">
+          Id can only contain letters and spaces
+        </li>
+        <li *ngIf="adminId.errors.minlength">
+          Id must be at least
+          {{adminId.errors.minlength.requiredLength}} characters
+        </li>
+      </ul>
+    </div>
+    <div class="form-group">
+      <label>Admin Password</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="admin.password" #password="ngModel"
+        required/>
+      <ul class="text-danger list-unstyled" *ngIf="password.dirty && password.invalid">
+        <li *ngIf="password.errors.required">
+          You must enter a password
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+        Admin Login
+      </button>
+    </div><br>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-sm btn-outline-secondary" (click)="goBack()">Back</button>
+    </div>
+  </form>
+</div>

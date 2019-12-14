@@ -1,0 +1,59 @@
+
+<div class="jumbotron">
+  <div class="d-flex justify-content-center">
+    <div>
+      <table class="table table-stripped">
+        <tbody>
+          <tr>
+            <td>BUS NO : </td>
+            <td>
+              <h5>{{bookedBus?.busRouteNo | uppercase}}</h5>
+            </td>
+          </tr>
+          <tr>
+            <td>FROM : </td>
+            <td>
+              <h5>{{bookedBus?.fromCity | uppercase}}</h5>
+            </td>
+          </tr>
+          <tr>
+            <td>TO : </td>
+            <td>
+              <h5>{{bookedBus?.toCity | uppercase}}</h5>
+            </td>
+          </tr>
+          <tr>
+            <td>BUS TYPE : </td>
+            <td>
+              <h5>{{bookedBus?.busDescription | uppercase}}</h5>
+            </td>
+          </tr>
+          <tr>
+            <td>BUS FARE : </td>
+            <td>
+              <h5>Rs.{{bookedBus?.busFare}}</h5>
+            </td>
+          </tr>
+          <tr>
+            <td>TICKETS : </td>
+            <td>
+              <button class="btn btn-warning btn-small" (click)="decrementTicCount()">-</button>
+              <button class="btn btn-light btn-medium">{{ticketCount}}</button>
+              <button class="btn btn-warning btn-small" (click)="incrementTicCount()">+</button>
+            </td>
+          </tr>
+          <tr>
+            <td>TOTAL AMOUNT TO BE PAID : </td>
+            <td>
+              <h5>Rs. {{getTotalAmt(bookedBus?.busFare)}}</h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button class=" btn btn-primary btn-large m-1 p-1"  (click)="proceedToCheckout()">PROCEED TO CHECKOUT</button>
+    <button class=" btn btn-danger btn-large m-1 p-1" (click)="goBack()">BACK</button>
+  </div>
+</div>

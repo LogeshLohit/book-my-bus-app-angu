@@ -1,0 +1,30 @@
+<!-- App component:
+<form novalidate (ngSubmit)="showResults(product)">
+  name : <input class="form-control" type="text" name="prdName" [(ngModel)]="product.prdName" minlength="5" required/><br>
+  id : <input type="number" name="prdId"[(ngModel)]="product.prdId"/>
+  <button type="submit">Submit</button>
+</form>
+ -->
+<!-- <app-login></app-login> -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col text-white bg-dark text-center">
+      <a class="navbar-brand">BookMyBus</a>
+      <div *ngIf="isUserLogged()"><button class="flex float-right btn btn-danger text-white" routerLink="">Log
+          out</button><a class="flex float-right btn btn-outline-success"
+          routerLink="">{{user.firstName | uppercase}}</a></div>
+      <div *ngIf="!isUserLogged()">
+        <button class="flex float-right btn btn-outline-success" routerLink="login">SignIn/Login</button>
+        <button class="flex float-right btn btn-outline-primary" routerLink="admin">Admin</button></div>
+    </div>
+  </div>
+  <div class="row bg-primary text-white">
+    <a class="nav-link" style="color:papayawhip" routerLink="buses">View All Bus</a>
+    <a class="nav-link" style="color:papayawhip">Booking History</a>
+    <a class="nav-link" style="color:papayawhip">Top Routes</a>
+    <!-- <button class="nav-link" (click)="showSmartSearch()">SS</button> -->
+  </div>
+</div>
+<!-- <app-admin></app-admin> -->
+<router-outlet></router-outlet>
+<!-- <app-bus></app-bus>  -->

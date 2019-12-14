@@ -1,0 +1,77 @@
+<h4>Main Admin page</h4>
+<div class="row">
+    <div class="col-3 bg-dark">
+        <div class="d-flex justify-content-center m-2 p-2"><button class="btn btn-success" (click)="showAddRoute()">Add
+                Bus Route</button></div>
+    </div>
+    <div class="col-9">
+        <div *ngIf="showAddRouteTogggle" style="background-color: palegoldenrod">
+            <form novalidate #form="ngForm" (ngSubmit)="addNewBus(form)">
+                <div class="row m-1 p-1">
+                    <div class="col-3 m-1 p-1"><label><strong>Select from city:</strong></label></div>
+                    <div class="col p-1"><select class="dropdown" [(ngModel)]="newBus.fromCity" name="newBus.fromCity"
+                            (click)="getSelectedFromCity(newBus.fromCity)" required>
+                            <option value="" selected="selected">--Select from city--</option>
+                            <option *ngFor="let city of cities" value={{city}}>{{city | uppercase}}</option>
+                        </select></div>
+                </div>
+                <div class="row m-1 p-1">
+                    <div class="col-3 m-1 p-1"> <label><strong>Select to city:</strong></label></div>
+                    <div class="col p-1"><select class="from-control clearfix" [(ngModel)]="newBus.toCity"
+                            name="newBus.toCity" (click)="getSelectedToCity(newBus.toCity)" required>
+                            <option value="" selected="selected">--Select to city--</option>
+                            <option *ngFor="let toCity of toCities" value={{toCity}}>{{toCity | uppercase}}</option>
+                        </select></div>
+                </div>
+                <div class="row m-1 p-1">
+                        <div class="col-3 m-1 p-1"> <label><strong>Bus Route No:</strong></label></div>
+                        <div class="col p-1">
+                            <input type="text" name="newBus.busRouteNo" [(ngModel)]="newBus.busRouteNo" maxlength="4" required>
+                        </div>
+                    </div>
+                <div class="row m-1 p-1">
+                    <div class="col-3 m-1 p-1"> <label><strong>Bus description:</strong></label></div>
+                    <div class="col p-1">
+                        <input type="text" name="newBus.busDesc" [(ngModel)]="newBus.busDesc" maxlength="200">
+                    </div>
+                </div>
+                <div class="row m-1 p-1">
+                    <div class="col-3 m-1 p-1"> <label><strong>Bus Fare:</strong></label></div>
+                    <div class="col p-1">
+                        Rs.&nbsp;<input type="number" name="newBus.busFare" [(ngModel)]="newBus.busFare" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center "><button type="submit" class="btn btn-primary" [disabled]="form.invalid">ADD</button>
+                </div>
+            </form>
+
+        </div>
+
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>
+                        Bus No
+                    </th>
+                    <th>From city</th>
+                    <th>To city</th>
+                    <th>Bus Description</th>
+                    <th>Bus Fare</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bus of buses">
+                    <td>{{bus.busRouteNo}}</td>
+                    <td>{{bus.fromCity}}</td>
+                    <td>{{bus.toCity}}</td>
+                    <td>{{bus.busDescription}}</td>
+                    <td>Rs.{{bus.busFare}}</td>
+                    <td><button class="btn btn-warning" [routerLink]="['/edit',bus.busRouteNo]">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="deleteBus(bus._id,bus.fromCity,bus.toCity)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
